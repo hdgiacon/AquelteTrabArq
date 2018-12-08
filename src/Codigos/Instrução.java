@@ -64,5 +64,32 @@ public class Instrução {
         regDestino.setValor(a);
     }
     
+    public int jump(String codigo, String label){
+        int tam = codigo.length();
+        int tamAux;
+        int cont = 0, k = 0, i = 0;
+        Integer posLabel = null;
+        char inst;
+        String aux;
+        while(i != tam){    //laço que percorre o código escrito pelo usuário para encontrar o label
+            aux = codigo.substring(i, codigo.indexOf(" "));     //ex: mov x1, x2 aux irá receber mov
+            tamAux = aux.length();      //tamAux armazena o número de caracteres percorridos para atualizar i
+            if(label.compareTo(aux) == 0){      //compara aux com label
+                i = i + tamAux;                 // atualiza i
+                System.out.println("Label encontrado.");
+                posLabel = i;                   //posLabel recebe a posição da string para o jump avançar 
+            }
+            else{
+                i = i + tamAux;                 //atualiza i
+                aux = codigo.substring(i, codigo.indexOf('\n'));        //avança para a proxima linha
+                tamAux = aux.length();          //armazena valor para atualizar i
+                i = i + tamAux;                 //atualiza i para avançar até a proxima linha
+                inst = codigo.charAt(i);
+                i++;                            //incrementa o i para ignorar caracter em branco do final de linha
+            }
+            
+        }
+        return posLabel;    
+    }    
     
 }
