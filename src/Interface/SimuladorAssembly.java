@@ -28,7 +28,6 @@ public class SimuladorAssembly extends javax.swing.JFrame {
     private void initComponents() {
 
         LabelInserirCodigoAssembly = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         textAreaAssembly = new javax.swing.JTextArea();
         BotaoAssemblyOK = new javax.swing.JButton();
         BotaoStep = new javax.swing.JButton();
@@ -42,7 +41,6 @@ public class SimuladorAssembly extends javax.swing.JFrame {
 
         textAreaAssembly.setColumns(20);
         textAreaAssembly.setRows(5);
-        jScrollPane1.setViewportView(textAreaAssembly);
 
         BotaoAssemblyOK.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         BotaoAssemblyOK.setText("OK");
@@ -83,10 +81,12 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LabelInserirCodigoAssembly)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(39, 39, 39)
-                .addComponent(BotaoStep, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(textAreaAssembly, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(BotaoStep, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,23 +95,95 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 .addComponent(LabelInserirCodigoAssembly)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(BotaoStep, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textAreaAssembly, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(177, 177, 177)
+                        .addComponent(BotaoStep, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botãoSair)
                     .addComponent(BotaoAssemblyOK))
-                .addGap(0, 19, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoOk(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOk
-        // TODO add your handling code here:
+        String areaTextAssembly = textAreaAssembly.getText();
+        /*
+        int cont=0, cont2=0, contFinal;
+        char c1, c2;
+        String teste = null;
+        for(int k=0;k<areaTextAssembly.length();k++){
+            c1 = areaTextAssembly.charAt(k);
+            cont2++;
+            if(c1 == '\n'){
+                contFinal = cont2 + 3;
+                teste = areaTextAssembly.substring(cont2, contFinal);
+            }
+        }
+        System.out.println(teste);
+        */
+        
+        char c;
+        int cont=0, contFinal, contInicial=0;
+        String captura = null;
+        for(int k=0;k<areaTextAssembly.length();k++){
+            c = areaTextAssembly.charAt(k);
+            cont++;
+            if(cont == 4){  //ESTE IF É PARA A PRIMEIRA LINHA DO CODIGO ASSEMBLY
+                captura = areaTextAssembly.substring(0, 4);
+                if(captura.equals("MOV_")){
+                    
+                }
+                else if(captura.equals("MOVE")){
+                    
+                }
+                else if(captura.equals("ADD_")){
+                    
+                }
+                else if(captura.equals("ADDI")){    
+                    
+                }
+                else if(captura.equals("SUB_")){
+                    
+                }
+                else if(captura.equals("SUBI")){
+                    
+                }
+                else if(captura.equals("JUMP")){
+                    
+                }
+            }
+            if(c == '\n'){  //ESTE IF É PARA AS DEMAIS LINHAS DE CODIGO ASSEMBLY
+                contFinal = cont + 4;
+                captura = areaTextAssembly.substring(cont, contFinal);
+                if(captura.equals("MOV_")){
+                    
+                }
+                else if(captura.equals("MOVE")){
+                    
+                }
+                else if(captura.equals("ADD_")){
+                    
+                }
+                else if(captura.equals("ADDI")){
+                    
+                }
+                else if(captura.equals("SUB_")){
+                    
+                }
+                else if(captura.equals("SUBI")){
+                    
+                }
+                else if(captura.equals("JUMP")){
+                    
+                }
+            }
+        }
+        
     }//GEN-LAST:event_botaoOk
 
     private void botaoSair(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSair
@@ -163,7 +235,6 @@ public class SimuladorAssembly extends javax.swing.JFrame {
     private javax.swing.JButton BotaoStep;
     private javax.swing.JLabel LabelInserirCodigoAssembly;
     private javax.swing.JButton botãoSair;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea textAreaAssembly;
     // End of variables declaration//GEN-END:variables
 }
