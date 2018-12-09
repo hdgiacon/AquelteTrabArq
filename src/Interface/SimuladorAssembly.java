@@ -330,7 +330,20 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 }
                 
                 for(Integer v: listaValores){
-                    System.out.println("Valor: " + v);
+                    //System.out.println("Valor: " + v);
+                    try{
+                        fileR = new FileWriter("teste.txt");
+                        buffer = new BufferedWriter(fileR);
+                        buffer.write(v);
+                    
+                    
+                          //buffer.write("Héctor");
+                        buffer.close();
+                        fileR.close();
+                }
+                   catch(IOException ex){
+                    
+                   }
                 }
                 
                 
