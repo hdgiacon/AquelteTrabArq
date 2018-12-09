@@ -1,4 +1,4 @@
-package Pacote1;
+package Codigos;
 
 public class Registrador {
     private Integer valor;
