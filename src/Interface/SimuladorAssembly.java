@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package Interface;
 
 /**
  *
@@ -32,6 +32,14 @@ public class SimuladorAssembly extends javax.swing.JFrame {
         BotaoAssemblyOK = new javax.swing.JButton();
         BotaoStep = new javax.swing.JButton();
         botãoSair = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -66,27 +74,54 @@ public class SimuladorAssembly extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel1.setText("Exemplos de entrada:");
+
+        jLabel2.setText("MOV_ R1,001");
+
+        jLabel3.setText("MOVE R1,R2");
+
+        jLabel4.setText("ADD_ R1,R2,R3");
+
+        jLabel5.setText("ADDI R1,R2,010");
+
+        jLabel6.setText("SUB_ R1,R2,R3");
+
+        jLabel7.setText("SUBI R1,R2,120");
+
+        jLabel8.setText("JUMP ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(botãoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(BotaoAssemblyOK, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(LabelInserirCodigoAssembly)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addComponent(textAreaAssembly, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(BotaoStep, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelInserirCodigoAssembly)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(textAreaAssembly, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(BotaoStep, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(104, 104, 104))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(botãoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(BotaoAssemblyOK, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,16 +130,33 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 .addComponent(LabelInserirCodigoAssembly)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(textAreaAssembly, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(BotaoStep, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel1)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel5)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabel7)
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel8))
+                            .addComponent(BotaoStep, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botãoSair)
                     .addComponent(BotaoAssemblyOK))
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGap(0, 133, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,75 +164,164 @@ public class SimuladorAssembly extends javax.swing.JFrame {
 
     private void botaoOk(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOk
         String areaTextAssembly = textAreaAssembly.getText();
-        /*
-        int cont=0, cont2=0, contFinal;
-        char c1, c2;
-        String teste = null;
-        for(int k=0;k<areaTextAssembly.length();k++){
-            c1 = areaTextAssembly.charAt(k);
-            cont2++;
-            if(c1 == '\n'){
-                contFinal = cont2 + 3;
-                teste = areaTextAssembly.substring(cont2, contFinal);
-            }
-        }
-        System.out.println(teste);
-        */
-        
         char c;
-        int cont=0, contFinal, contInicial=0;
-        String captura = null;
+        int cont=0, contFinal, origem, destino, intermediario;
+        String capturaInstrucao = null, capturaPrimeiroParametro = null;
+        String capturaSegundoParametro = null, capturaTerceiroParametro = null;
         for(int k=0;k<areaTextAssembly.length();k++){
             c = areaTextAssembly.charAt(k);
             cont++;
             if(cont == 4){  //ESTE IF É PARA A PRIMEIRA LINHA DO CODIGO ASSEMBLY
-                captura = areaTextAssembly.substring(0, 4);
-                if(captura.equals("MOV_")){
+                capturaInstrucao = areaTextAssembly.substring(0, 4);
+                if(capturaInstrucao.equals("MOV_")){    //EX: MOV_ R1,001
+                    origem = cont; //ORIGEM RECEBE A POSIÇAO DEPOIS DE CAPTURAR A INSTRUÇAO
+                    origem++; //ORIGEM RECEBE +1 PARA NAO CAPTURAR O ESPAÇO
+                    destino = origem + 2; //DESTINO RECEBE A POSICAO DA ORIGEM +2 PARA PEGAR A POSIÇAO FINAL DO PRIMEIRO PARAMETRO
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1; //ORIGEM RECEBE O DESTINO +1 PARA NAO CAPTURAR A VIRGULA
+                    destino = origem + 3; //DESTINO RECEBE ORIGEM PARA SABER A POSIÇAO FINAL DO SEGUNDO PARAMETRO
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     
+                    //ARMAZENAR OS VALORES CAPTURADOS
                 }
-                else if(captura.equals("MOVE")){
-                    
+                else if(capturaInstrucao.equals("MOVE")){
+                    origem = cont;
+                    origem++;
+                    destino = origem + 2;
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                 }
-                else if(captura.equals("ADD_")){
-                    
+                else if(capturaInstrucao.equals("ADD_")){
+                    origem = cont;
+                    origem++;
+                    destino = origem + 2;
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
                 }
-                else if(captura.equals("ADDI")){    
-                    
+                else if(capturaInstrucao.equals("ADDI")){    
+                    origem = cont;
+                    origem++;
+                    destino = origem + 2;
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 3;
+                    capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
                 }
-                else if(captura.equals("SUB_")){
-                    
+                else if(capturaInstrucao.equals("SUB_")){
+                    origem = cont;
+                    origem++;
+                    destino = origem + 2;
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
                 }
-                else if(captura.equals("SUBI")){
-                    
+                else if(capturaInstrucao.equals("SUBI")){
+                    origem = cont;
+                    origem++;
+                    destino = origem + 2;
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 3;
+                    capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
                 }
-                else if(captura.equals("JUMP")){
+                else if(capturaInstrucao.equals("JUMP")){
                     
                 }
             }
             if(c == '\n'){  //ESTE IF É PARA AS DEMAIS LINHAS DE CODIGO ASSEMBLY
                 contFinal = cont + 4;
-                captura = areaTextAssembly.substring(cont, contFinal);
-                if(captura.equals("MOV_")){
+                System.out.println("------" + cont);
+                capturaInstrucao = areaTextAssembly.substring(cont, contFinal);
+                System.out.println(capturaInstrucao);
+                if(capturaInstrucao.equals("MOV_")){
+                    origem = contFinal; //ORIGEM RECEBE A POSIÇAO DEPOIS DE CAPTURAR A INSTRUÇAO
+                    origem++; //ORIGEM RECEBE +1 PARA NAO CAPTURAR O ESPAÇO
+                    destino = origem + 2; //DESTINO RECEBE A POSICAO DA ORIGEM +2 PARA PEGAR A POSIÇAO FINAL DO PRIMEIRO PARAMETRO
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1; //ORIGEM RECEBE O DESTINO +1 PARA NAO CAPTURAR A VIRGULA
+                    destino = origem + 3; //DESTINO RECEBE ORIGEM PARA SABER A POSIÇAO FINAL DO SEGUNDO PARAMETRO
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                }
+                else if(capturaInstrucao.equals("MOVE")){
+                    origem = contFinal;
+                    origem++;
+                    destino = origem + 2;
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                }
+                else if(capturaInstrucao.equals("ADD_")){
+                    origem = contFinal;
+                    origem++;
+                    destino = origem + 2;
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                }
+                else if(capturaInstrucao.equals("ADDI")){
+                    origem = contFinal;
+                    origem++;
+                    destino = origem + 2;
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 3;
+                    capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                }
+                else if(capturaInstrucao.equals("SUB_")){
+                    origem = contFinal;
+                    origem++;
+                    destino = origem + 2;
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                }
+                else if(capturaInstrucao.equals("SUBI")){
+                    origem = contFinal;
+                    origem++;
+                    destino = origem + 2;
+                    capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 2;
+                    capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    origem = destino + 1;
+                    destino = origem + 3;
+                    capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                }
+                else if(capturaInstrucao.equals("JUMP")){
                     
                 }
-                else if(captura.equals("MOVE")){
-                    
-                }
-                else if(captura.equals("ADD_")){
-                    
-                }
-                else if(captura.equals("ADDI")){
-                    
-                }
-                else if(captura.equals("SUB_")){
-                    
-                }
-                else if(captura.equals("SUBI")){
-                    
-                }
-                else if(captura.equals("JUMP")){
-                    
-                }
+                System.out.println(capturaPrimeiroParametro);
+                System.out.println(capturaSegundoParametro);
+                System.out.println(capturaTerceiroParametro + "\n");
             }
         }
         
@@ -191,7 +332,7 @@ public class SimuladorAssembly extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoSair
 
     private void botaoStep(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoStep
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_botaoStep
 
     /**
@@ -235,6 +376,14 @@ public class SimuladorAssembly extends javax.swing.JFrame {
     private javax.swing.JButton BotaoStep;
     private javax.swing.JLabel LabelInserirCodigoAssembly;
     private javax.swing.JButton botãoSair;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextArea textAreaAssembly;
     // End of variables declaration//GEN-END:variables
 }
