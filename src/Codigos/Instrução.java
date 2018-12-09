@@ -30,14 +30,9 @@ public class Instrução {
         this.numDeCiclos = numDeCiclos;
     }
     
-    public void move(Registrador r1, Integer valor/*ArrayList<Registrador> listaRegistradores*/){
-        //for(Registrador r : listaRegistradores){
-           // if(r.getNome().equals(r1.getNome())){
-               // r.setValor(valor);
+    public void move(Registrador r1, Integer valor){
                r1.setValor(valor);
                System.out.println("Valor setado");
-            //}
-        //}
     }
     
     public void move(Registrador regOrigem,Registrador regDestino,ArrayList<Registrador> listaRegistradores){
