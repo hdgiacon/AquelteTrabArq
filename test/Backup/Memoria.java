@@ -1,4 +1,7 @@
-package Codigos;
+/*package Backup;
+
+import Codigos.Instrução;
+import Codigos.Registrador;
 
 public class Memoria {
     private Instrução i;
@@ -50,3 +53,4 @@ public class Memoria {
     
     
 }
+*/

@@ -5,13 +5,13 @@ public class Main {
 
     public static void main(String[] args) {        
 	ArrayList<Registrador> listaRegistradores = new ArrayList<Registrador>();
-        /*
+       
         for(int k = 1; k <= 32; k++){
             Registrador r = new Registrador("R"+k);
             listaRegistradores.add(r);
         }
-        faz isso e depois fazemos uma busca pelo nome dos registradores que queremos e damos o set desejado no valor
-        */
+       // faz isso e depois fazemos uma busca pelo nome dos registradores que queremos e damos o set desejado no valor
+        
         /*TESTES INDIVIDUAIS
         Registrador r = new Registrador();
         Registrador r2 = new Registrador();

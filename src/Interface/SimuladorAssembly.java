@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Interface;
+import Pacote1.Instrução;
+import Pacote1.Registrador;
+import java.util.ArrayList;
 
 /**
  *
@@ -163,6 +166,14 @@ public class SimuladorAssembly extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoOk(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOk
+        ArrayList<Registrador> listaRegistradores = new ArrayList<>(); //Lista que conterá os registradores
+        for(int k = 1; k <= 32; k++){ // inicia a lista inserindo os 32 registradores e setando nome R1,R2 ... R11...,Rk
+            Registrador r = new Registrador("R"+k);
+            listaRegistradores.add(r);
+        }
+        Instrução i = new Instrução();
+        //Registrador r = new Registrador();
+        
         String areaTextAssembly = textAreaAssembly.getText();
         char c;
         int cont=0, contFinal, origem, destino, intermediario;
@@ -183,6 +194,17 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     
                     //ARMAZENAR OS VALORES CAPTURADOS
+                    for(Registrador r: listaRegistradores){ //verifica se o registrador colocado na linha assembly está na lista
+                        if(r.getNome().equals(capturaPrimeiroParametro)){
+                            Integer valor = Integer.parseInt(capturaSegundoParametro); // converte a string do valor para inteiro de fato
+                            i.move(r, valor); // o MOV_ ocorre
+                            System.out.println("VALOR DO MOV_ OTARIO: " + r.getValor());
+                        }
+                    }
+                    
+                  
+                    
+                    
                 }
                 else if(capturaInstrucao.equals("MOVE")){
                     origem = cont;
@@ -192,6 +214,17 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1;
                     destino = origem + 2;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    
+                    //ARMAZENAR VALORES CAPTURADOS
+                    for(Registrador r : listaRegistradores){
+                        for(Registrador r2: listaRegistradores){
+                            if(r.getNome().equals(capturaPrimeiroParametro) && r2.getNome().equals(capturaSegundoParametro)){
+                                i.move(r2, r, listaRegistradores);
+                                System.out.println("VALOR DO MOVE: " + r.getValor());
+                            }
+                        }
+                    }
+                    
                 }
                 else if(capturaInstrucao.equals("ADD_")){
                     origem = cont;
@@ -204,6 +237,16 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1;
                     destino = origem + 2;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                    for(Registrador r : listaRegistradores){
+                        for(Registrador r2: listaRegistradores){
+                            for(Registrador r3: listaRegistradores){
+                                if(r.getNome().equals(capturaPrimeiroParametro) && r2.getNome().equals(capturaSegundoParametro) && r3.getNome().equals(capturaTerceiroParametro)){
+                                    i.add(r, r2, r3);
+                                    System.out.println("valor do reg da soma 1: " + r.getValor());
+                                }
+                            }
+                        }
+                    }
                 }
                 else if(capturaInstrucao.equals("ADDI")){    
                     origem = cont;
@@ -216,6 +259,15 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1;
                     destino = origem + 3;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                    for(Registrador r : listaRegistradores){
+                        for(Registrador r2: listaRegistradores){
+                            if(r.getNome().equals(capturaPrimeiroParametro) && r2.getNome().equals(capturaSegundoParametro)){
+                                Integer valor = Integer.parseInt(capturaTerceiroParametro);
+                                i.addi(r, r2, valor);
+                                System.out.println("Resultado do addi: " + r.getValor());
+                            }
+                        }
+                    }
                 }
                 else if(capturaInstrucao.equals("SUB_")){
                     origem = cont;
@@ -228,6 +280,16 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1;
                     destino = origem + 2;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                    for(Registrador r : listaRegistradores){
+                        for(Registrador r2: listaRegistradores){
+                            for(Registrador r3: listaRegistradores){
+                                if(r.getNome().equals(capturaPrimeiroParametro) && r2.getNome().equals(capturaSegundoParametro) && r3.getNome().equals(capturaTerceiroParametro)){
+                                    i.sub(r, r2, r3);
+                                    System.out.println("valor do sub: " + r.getValor());
+                                }
+                            }
+                        }
+                    }
                 }
                 else if(capturaInstrucao.equals("SUBI")){
                     origem = cont;
@@ -240,6 +302,15 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1;
                     destino = origem + 3;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                    for(Registrador r : listaRegistradores){
+                        for(Registrador r2: listaRegistradores){
+                            if(r.getNome().equals(capturaPrimeiroParametro) && r2.getNome().equals(capturaSegundoParametro)){
+                                Integer valor = Integer.parseInt(capturaTerceiroParametro);
+                                i.subi(r, r2, valor);
+                                System.out.println("valor do subi: " + r.getValor());
+                            }
+                        }
+                    }
                 }
                 else if(capturaInstrucao.equals("JUMP")){
                     
@@ -258,6 +329,14 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1; //ORIGEM RECEBE O DESTINO +1 PARA NAO CAPTURAR A VIRGULA
                     destino = origem + 3; //DESTINO RECEBE ORIGEM PARA SABER A POSIÇAO FINAL DO SEGUNDO PARAMETRO
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    for(Registrador r: listaRegistradores){ //verifica se o registrador colocado na linha assembly está na lista
+                        if(r.getNome().equals(capturaPrimeiroParametro)){
+                            Integer valor = Integer.parseInt(capturaSegundoParametro); // converte a string do valor para inteiro de fato
+                            i.move(r, valor); // o MOV_ ocorre
+                            System.out.println("VALOR DO MOV_: " + r.getValor());
+                        }
+                    }
+                    
                 }
                 else if(capturaInstrucao.equals("MOVE")){
                     origem = contFinal;
@@ -267,6 +346,14 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1;
                     destino = origem + 2;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
+                    for(Registrador r : listaRegistradores){
+                        for(Registrador r2: listaRegistradores){
+                            if(r.getNome().equals(capturaPrimeiroParametro) && r2.getNome().equals(capturaSegundoParametro)){
+                                i.move(r2, r, listaRegistradores);
+                                System.out.println("VALOR DO MOVE: " + r.getValor());
+                            }
+                        }
+                    }
                 }
                 else if(capturaInstrucao.equals("ADD_")){
                     origem = contFinal;
@@ -279,6 +366,16 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1;
                     destino = origem + 2;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                    for(Registrador r : listaRegistradores){
+                        for(Registrador r2: listaRegistradores){
+                            for(Registrador r3: listaRegistradores){
+                                if(r.getNome().equals(capturaPrimeiroParametro) && r2.getNome().equals(capturaSegundoParametro) && r3.getNome().equals(capturaTerceiroParametro)){
+                                    i.add(r, r2, r3);
+                                    System.out.println("valor do ADD_: " + r.getValor());
+                                }
+                            }
+                        }
+                    }
                 }
                 else if(capturaInstrucao.equals("ADDI")){
                     origem = contFinal;
@@ -291,6 +388,15 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1;
                     destino = origem + 3;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                    for(Registrador r : listaRegistradores){
+                        for(Registrador r2: listaRegistradores){
+                            if(r.getNome().equals(capturaPrimeiroParametro) && r2.getNome().equals(capturaSegundoParametro)){
+                                Integer valor = Integer.parseInt(capturaTerceiroParametro);
+                                i.addi(r, r2, valor);
+                                System.out.println("VALOR DO ADDI: " + r.getValor());
+                            }
+                        }
+                    }
                 }
                 else if(capturaInstrucao.equals("SUB_")){
                     origem = contFinal;
@@ -303,6 +409,16 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1;
                     destino = origem + 2;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                    for(Registrador r : listaRegistradores){
+                        for(Registrador r2: listaRegistradores){
+                            for(Registrador r3: listaRegistradores){
+                                if(r.getNome().equals(capturaPrimeiroParametro) && r2.getNome().equals(capturaSegundoParametro) && r3.getNome().equals(capturaTerceiroParametro)){
+                                    i.sub(r, r2, r3);
+                                    System.out.println("valor do SUB_: " + r.getValor());
+                                }
+                            }
+                        }
+                    }
                 }
                 else if(capturaInstrucao.equals("SUBI")){
                     origem = contFinal;
@@ -315,13 +431,22 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     origem = destino + 1;
                     destino = origem + 3;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
+                    for(Registrador r : listaRegistradores){
+                        for(Registrador r2: listaRegistradores){
+                            if(r.getNome().equals(capturaPrimeiroParametro) && r2.getNome().equals(capturaSegundoParametro)){
+                                Integer valor = Integer.parseInt(capturaTerceiroParametro);
+                                i.subi(r, r2, valor);
+                                System.out.println("valor do subi: " + r.getValor());
+                            }
+                        }
+                    }
                 }
                 else if(capturaInstrucao.equals("JUMP")){
                     
                 }
-                System.out.println(capturaPrimeiroParametro);
-                System.out.println(capturaSegundoParametro);
-                System.out.println(capturaTerceiroParametro + "\n");
+                //System.out.println(capturaPrimeiroParametro);
+                //System.out.println(capturaSegundoParametro);
+                //System.out.println(capturaTerceiroParametro + "\n");
             }
         }
         

@@ -3,6 +3,7 @@ package Pacote1;
 import java.util.ArrayList;
 
 public class Instrução {
+    private String nome;
     private Registrador registrador;
     private Integer numDeCiclos;
 
@@ -12,6 +13,15 @@ public class Instrução {
     public Instrução(Integer numDeCiclos){
         this.numDeCiclos = numDeCiclos;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     
     
     public Registrador getRegistrador() {
