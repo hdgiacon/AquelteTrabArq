@@ -152,10 +152,16 @@ public class SimuladorAssembly extends javax.swing.JFrame {
 
     private void botaoOk(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOk
         ArrayList<Registrador> listaRegistradores = new ArrayList<>(); //Lista que conterá os registradores
-        for(int k = 1; k <= 32; k++){ // inicia a lista inserindo os 32 registradores e setando nome R1,R2 ... R11...,Rk
+        int contador=0;
+        for(int k = 1; k <= 9; k++ ){
+            Registrador r = new Registrador("R0"+k);
+            listaRegistradores.add(r);
+        }
+        for(int k = 10; k <= 32; k++){ // inicia a lista inserindo os 32 registradores e setando nome R1,R2 ... R11...,Rk
             Registrador r = new Registrador("R"+k);
             listaRegistradores.add(r);
         }
+        
         Instrução i = new Instrução();
         ArrayList<Integer> listaValores = new ArrayList<>();
         ArrayList<Step> listaSteps = new ArrayList<>();
@@ -167,12 +173,13 @@ public class SimuladorAssembly extends javax.swing.JFrame {
         for(int k=0;k<areaTextAssembly.length();k++){
             c = areaTextAssembly.charAt(k);
             cont++;
+            contador++; //contador para criar a matriz com as instruçoes
             if(cont == 4){  //ESTE IF É PARA A PRIMEIRA LINHA DO CODIGO ASSEMBLY
                 capturaInstrucao = areaTextAssembly.substring(0, 4);
                 if(capturaInstrucao.equals("MOV_")){    //EX: MOV_ R1,001
                     origem = cont; //ORIGEM RECEBE A POSIÇAO DEPOIS DE CAPTURAR A INSTRUÇAO
                     origem++; //ORIGEM RECEBE +1 PARA NAO CAPTURAR O ESPAÇO
-                    destino = origem + 2; //DESTINO RECEBE A POSICAO DA ORIGEM +2 PARA PEGAR A POSIÇAO FINAL DO PRIMEIRO PARAMETRO
+                    destino = origem + 3; //DESTINO RECEBE A POSICAO DA ORIGEM +2 PARA PEGAR A POSIÇAO FINAL DO PRIMEIRO PARAMETRO
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1; //ORIGEM RECEBE O DESTINO +1 PARA NAO CAPTURAR A VIRGULA
                     destino = origem + 3; //DESTINO RECEBE ORIGEM PARA SABER A POSIÇAO FINAL DO SEGUNDO PARAMETRO
@@ -194,10 +201,10 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("MOVE")){
                     origem = cont;
                     origem++;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;   //<--------
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     
                     //ARMAZENAR VALORES CAPTURADOS
@@ -214,13 +221,13 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("ADD_")){
                     origem = cont;
                     origem++;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
                     for(Registrador r : listaRegistradores){
                         for(Registrador r2: listaRegistradores){
@@ -236,10 +243,10 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("ADDI")){    
                     origem = cont;
                     origem++;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
                     destino = origem + 3;
@@ -257,13 +264,13 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("SUB_")){
                     origem = cont;
                     origem++;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
                     for(Registrador r : listaRegistradores){
                         for(Registrador r2: listaRegistradores){
@@ -279,10 +286,10 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("SUBI")){
                     origem = cont;
                     origem++;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
                     destino = origem + 3;
@@ -315,7 +322,6 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 
                 listaSteps.add(step);
                  
-                
             }
             if(c == '\n'){  //ESTE IF É PARA AS DEMAIS LINHAS DE CODIGO ASSEMBLY
                 contFinal = cont + 4;
@@ -325,7 +331,7 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 if(capturaInstrucao.equals("MOV_")){
                     origem = contFinal; //ORIGEM RECEBE A POSIÇAO DEPOIS DE CAPTURAR A INSTRUÇAO
                     origem++; //ORIGEM RECEBE +1 PARA NAO CAPTURAR O ESPAÇO
-                    destino = origem + 2; //DESTINO RECEBE A POSICAO DA ORIGEM +2 PARA PEGAR A POSIÇAO FINAL DO PRIMEIRO PARAMETRO
+                    destino = origem + 3; //DESTINO RECEBE A POSICAO DA ORIGEM +2 PARA PEGAR A POSIÇAO FINAL DO PRIMEIRO PARAMETRO
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1; //ORIGEM RECEBE O DESTINO +1 PARA NAO CAPTURAR A VIRGULA
                     destino = origem + 3; //DESTINO RECEBE ORIGEM PARA SABER A POSIÇAO FINAL DO SEGUNDO PARAMETRO
@@ -342,10 +348,10 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("MOVE")){
                     origem = contFinal;
                     origem++;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     for(Registrador r : listaRegistradores){
                         for(Registrador r2: listaRegistradores){
@@ -359,13 +365,13 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("ADD_")){
                     origem = contFinal;
                     origem++;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
                     for(Registrador r : listaRegistradores){
                         for(Registrador r2: listaRegistradores){
@@ -381,10 +387,10 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("ADDI")){
                     origem = contFinal;
                     origem++;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
                     destino = origem + 3;
@@ -402,13 +408,13 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("SUB_")){
                     origem = contFinal;
                     origem++;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaTerceiroParametro = areaTextAssembly.substring(origem, destino);
                     for(Registrador r : listaRegistradores){
                         for(Registrador r2: listaRegistradores){
@@ -424,10 +430,10 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("SUBI")){
                     origem = contFinal;
                     origem++;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaPrimeiroParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
-                    destino = origem + 2;
+                    destino = origem + 3;
                     capturaSegundoParametro = areaTextAssembly.substring(origem, destino);
                     origem = destino + 1;
                     destino = origem + 3;
@@ -460,12 +466,15 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 
                 listaSteps.add(step);
                 
-                
+                System.out.println(capturaPrimeiroParametro);
+                System.out.println(capturaSegundoParametro);
+                System.out.println(capturaTerceiroParametro);
+                System.out.println("-----------------------");
             }
            
             
         }
-         // mostra o "historico de valores dos registradores de acordo com cada linha
+            // mostra o "historico de valores dos registradores de acordo com cada linha
             System.out.println("SEGUE ABAIXO O HISTÓRICO DE VALORES DOS REGISTRADORES: ");
             System.out.println("\n");
             System.out.println("Guia para leitura: \n");
