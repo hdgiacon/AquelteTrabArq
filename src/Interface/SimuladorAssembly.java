@@ -1,11 +1,9 @@
 package Interface;
 import Codigos.Instrução;
 import Codigos.Registrador;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import Codigos.Step;
+
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class SimuladorAssembly extends javax.swing.JFrame {
 
@@ -159,9 +157,8 @@ public class SimuladorAssembly extends javax.swing.JFrame {
             listaRegistradores.add(r);
         }
         Instrução i = new Instrução();
-        FileWriter fileR;
-        BufferedWriter buffer;
         ArrayList<Integer> listaValores = new ArrayList<>();
+        ArrayList<Step> listaSteps = new ArrayList<>();
         String areaTextAssembly = textAreaAssembly.getText();
         char c;
         int cont=0, contFinal, origem, destino;
@@ -303,22 +300,6 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("JUMP")){
                     
                 }
-                
-                
-                /*
-                try{
-                    fileR = new FileWriter("teste.txt");
-                    buffer = new BufferedWriter(fileR);
-                    
-                    
-                    
-                    //buffer.write("Héctor");
-                    buffer.close();
-                    fileR.close();
-                }
-                catch(IOException ex){
-                    
-                }*/
                 //usar listas para gerenciar os valores dos registradores durante os steps a ideia é cada step ter sua própria lista
                 for(Registrador r : listaRegistradores){
                     if(r.getValor() == null){
@@ -329,25 +310,11 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     }
                 }
                 
-                for(Integer v: listaValores){
-                    //System.out.println("Valor: " + v);
-                    try{
-                        fileR = new FileWriter("teste.txt");
-                        buffer = new BufferedWriter(fileR);
-                        buffer.write(v);
-                    
-                    
-                          //buffer.write("Héctor");
-                        buffer.close();
-                        fileR.close();
-                }
-                   catch(IOException ex){
-                    
-                   }
-                }
+                Step step = new Step();
+                step.setValores(listaValores);
                 
-                
-                
+                listaSteps.add(step);
+                 
                 
             }
             if(c == '\n'){  //ESTE IF É PARA AS DEMAIS LINHAS DE CODIGO ASSEMBLY
@@ -478,10 +445,34 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 else if(capturaInstrucao.equals("JUMP")){
                     
                 }
+                //Salvando os valores dos registradores
+                for(Registrador r : listaRegistradores){
+                    if(r.getValor() == null){
+                        listaValores.add(0);
+                    }
+                    else{
+                        listaValores.add(r.getValor());
+                    }
+                }
+                //cria o step para ser armazenado na lista para assim acessarmos a lista de step para ter o histórico
+                Step step = new Step();
+                step.setValores(listaValores);
+                
+                listaSteps.add(step);
                 
                 
             }
+           
+            
         }
+         // mostra o "historico de valores dos registradores de acordo com cada linha
+            System.out.println("SEGUE ABAIXO O HISTÓRICO DE VALORES DOS REGISTRADORES: ");
+            System.out.println("\n");
+            System.out.println("Guia para leitura: \n");
+            System.out.println("Os valores abaixo são Registradores de R1 a R32 respectivamente que devem ser lidos da seguinte maneira:");
+            System.out.println("Leia do 1º ao 32º número, isso representa uma linha do código assembly");
+            System.out.println("Após chegar ao 32º número se houverem mais números, repita a mesma lógica para os demais pois significa que o código possui mais de uma linha");
+            System.out.println(listaSteps.get(0).getValores());
         
     }//GEN-LAST:event_botaoOk
 

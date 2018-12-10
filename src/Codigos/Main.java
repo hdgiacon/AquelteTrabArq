@@ -1,10 +1,11 @@
 package Codigos;
+import Interface.SimuladorAssembly;
 import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {        
-	ArrayList<Registrador> listaRegistradores = new ArrayList<Registrador>();
+	/*ArrayList<Registrador> listaRegistradores = new ArrayList<Registrador>();
        
         for(int k = 1; k <= 32; k++){
             Registrador r = new Registrador("R"+k);
@@ -40,6 +41,14 @@ public class Main {
         System.out.println("\n \n SUBi: ");
         i.subi(r3, r2, 10);
         System.out.println("Nome: "+r3.getNome()+"\n"+"Valor: "+r3.getValor());
+        
         */
+        
+        SimuladorAssembly simulador = new SimuladorAssembly();
+        simulador.setVisible(true);
+        
+        
+        
+        
     }
 }
