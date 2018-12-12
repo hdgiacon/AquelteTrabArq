@@ -42,7 +42,7 @@ public class Instrução {
     
     public void move(Registrador r1, Integer valor){
                r1.setValor(valor);
-               System.out.println("Valor setado");
+               
     }
     
     public void move(Registrador regOrigem,Registrador regDestino,ArrayList<Registrador> listaRegistradores){

@@ -26,7 +26,6 @@ public class SimuladorAssembly extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -68,8 +67,6 @@ public class SimuladorAssembly extends javax.swing.JFrame {
 
         jLabel7.setText("SUBI R01,R02,120");
 
-        jLabel8.setText("JUMP ");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,8 +87,7 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8)))))
+                                    .addComponent(jLabel7)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(botãoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,9 +118,7 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jLabel6)
                         .addGap(2, 2, 2)
-                        .addComponent(jLabel7)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel8)))
+                        .addComponent(jLabel7)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botãoSair)
@@ -288,7 +282,7 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     }
                 }
                 else if(capturaInstrucao.equals("JUMP")){
-                    
+                    //SERIA A PARTE DO JUMP, A INSTRUÇÃO FOI IMPLEMENTADA PORÉM NÃO CONSEGUIMOS INSERIR ELA DE FATO
                 }
                 //usar listas para gerenciar os valores dos registradores durante os steps a ideia é cada step ter sua própria lista
                 for(Registrador r : listaRegistradores){
@@ -308,10 +302,10 @@ public class SimuladorAssembly extends javax.swing.JFrame {
             }
             if(c == '\n'){  //ESTE IF É PARA AS DEMAIS LINHAS DE CODIGO ASSEMBLY
                 contFinal = cont + 4;
-                System.out.println("------" + cont);
+                //System.out.println("------" + cont);
                 capturaInstrucao = areaTextAssembly.substring(cont, contFinal);
                 listaInstrucoes.add(capturaInstrucao);
-                System.out.println(capturaInstrucao);
+                //System.out.println(capturaInstrucao);
                 if(capturaInstrucao.equals("MOV_")){
                     origem = contFinal; //ORIGEM RECEBE A POSIÇAO DEPOIS DE CAPTURAR A INSTRUÇAO
                     origem++; //ORIGEM RECEBE +1 PARA NAO CAPTURAR O ESPAÇO
@@ -433,7 +427,7 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                     }
                 }
                 else if(capturaInstrucao.equals("JUMP")){
-                    
+                     //SERIA A PARTE DO JUMP, A INSTRUÇÃO FOI IMPLEMENTADA PORÉM NÃO CONSEGUIMOS INSERIR ELA DE FATO
                 }
                 //Salvando os valores dos registradores
                 for(Registrador r : listaRegistradores){
@@ -449,11 +443,7 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                 step.setValores(listaValores);
                 contador++;
                 listaSteps.add(step);
-                
-               // System.out.println(capturaPrimeiroParametro);
-                //System.out.println(capturaSegundoParametro);
-                //System.out.println(capturaTerceiroParametro);
-                //System.out.println("-----------------------");
+              
             }
            
             
@@ -476,26 +466,94 @@ public class SimuladorAssembly extends javax.swing.JFrame {
                        }
                    }
                 }
-            
-           // PRINTAR A MATRIZ DE DESLOCAMENTO DA INSTRUÇÃO --- TRABALHO AQUI AINDA
+            /*
+           // PRINTAR A MATRIZ DE DESLOCAMENTO DA INSTRUÇÃO --- PARTE QUE NÃO CONSEGUIMOS IMPLEMENTAR DA MANEIRA ADEQUADA
            System.out.println("Representação do pipeline: ");
            System.out.println("FILA   EI   DI   EX   ER");
            for(int a = 0; a < contador; a++){
                for(int b = 0; b < 5; b++){
                     if(matrizInstrucoes[a][b] != null){
-                        System.out.print(matrizInstrucoes[a][b] + " ");
+                        System.out.println(matrizInstrucoes[a][b] + " ");
                     }
                 }
                 System.out.println(" ");
             }
+           
+           ArrayList<String> listaString = new ArrayList<>();
+           int x,z,m = 0,n = 0;
+           int aux1 = 0;
+           
+           for(int ç = 0; ç < contador; ç++){
+               for(int k = 0; k < 5; k++){
+                   System.out.print(matrizInstrucoes[ç][k] + " ");
+               }
+               System.out.println(" ");
+           }
+           
+           for(int w = 0; w < contador; w++){
+               
+               System.out.println("FILA   EI   DI   EX   ER");
+               for(int a = 0; a < contador; a++){
+                   aux1 = 0;
+                   for(int b = 0; b < 4; b++){      
+                        if(a == 0){    
+                            if(b == 0 && matrizInstrucoes[a][b] != null){
+                                System.out.print(matrizInstrucoes[a][b] + " ");
+                                aux1 = b + 1;
+                                matrizInstrucoes[a][aux1] = matrizInstrucoes[a][b];
+                                matrizInstrucoes[a][b] = null;
+                                System.out.print(matrizInstrucoes[a][aux1]);
+                                break;
+                            }
+                            if(b != 0 && matrizInstrucoes[a][b] != null){
+                                System.out.print(" ");
+                                aux1 = b + 1;
+                                matrizInstrucoes[a][aux1] = matrizInstrucoes[a][b];
+                                matrizInstrucoes[a][b] = null;
+                                System.out.print(matrizInstrucoes[a][aux1]);
+                                break;
+                            }
+                            else{
+                                System.out.print(" ");
+                            }
+                        }
+                        if(a > 0){
+                            if((matrizInstrucoes[a-1][b+1] != null) && b > 0){
+                                System.out.print(" ");
+                                aux1 = b + 1;
+                                matrizInstrucoes[a][aux1] = matrizInstrucoes[a][b];
+                                matrizInstrucoes[a][b] = null;
+                                System.out.print(matrizInstrucoes[a][aux1]);
+                                break;
+                            }
+                            if(b == 0 && matrizInstrucoes[a][b] != null){
+                                System.out.print(matrizInstrucoes[a][b] + " ");
+                                aux1 = b + 1;
+                                matrizInstrucoes[a][aux1] = matrizInstrucoes[a][b];
+                                matrizInstrucoes[a][b] = null;
+                                System.out.print(matrizInstrucoes[a][aux1]);
+                                break;
+                            }
+                            else
+                                System.out.print(" ");
+                        }
+                   }
+                   
+                   System.out.println(" ");
+                }
+                m++;
+                n++;
+           }
+           
+           */
             
             // mostra o "historico de valores dos registradores de acordo com cada linha
             System.out.println("SEGUE ABAIXO O HISTÓRICO DE VALORES DOS REGISTRADORES: ");
             System.out.println("");
             System.out.println("Guia para leitura: \n");
             System.out.println("Os valores abaixo são Registradores de R1 a R32 respectivamente que devem ser lidos da seguinte maneira:");
-            System.out.println(" ---Leia do 1º ao 32º número, isso representa uma linha do código assembly");
-            System.out.println(" ---Após chegar ao 32º número e ainda houverem mais números, repita a mesma lógica para os demais pois significa que o código possui mais um registro de linha");
+            System.out.println(" ---> Leia do 1º ao 32º número, isso representa uma linha do código assembly");
+            System.out.println(" ---> Após chegar ao 32º número e ainda houverem mais números, repita a mesma lógica para os demais pois significa que o código possui mais um registro de linha");
             System.out.println("Isso irá evidenciar o histórico de valores de todos os registradores durante cada linha de código");
             System.out.println(listaSteps.get(0).getValores());
         
@@ -549,7 +607,6 @@ public class SimuladorAssembly extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextArea textAreaAssembly;
     // End of variables declaration//GEN-END:variables
 }
